@@ -6,7 +6,7 @@
 - [*Playground*](http://playground.arduino.cc/Main/LM35HigherResolution) d'Arduino
 - [*Datasheet*](https://www.ti.com/lit/ds/symlink/lm35.pdf) du capteur
 
-# Capteur DS18B20
+## Capteur DS18B20
 
 - [Bibliothèque OneWire](https://github.com/ppicazo/OneWire) sur GitHub
 - [Tutoriel](http://skyduino.wordpress.com/2012/04/26/arduino-capteur-de-temperature-ds18b20/) sur Skyduino

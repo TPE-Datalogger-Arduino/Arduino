@@ -1,14 +1,12 @@
 /* Source : http://skyduino.wordpress.com/2012/04/26/arduino-capteur-de-temperature-ds18b20/ */
 
-#include <OneWire.h> // Inclusion de la librairie OneWire
+#include <OneWire.h>
 
-#define DS18B20 0x28     // Adresse 1-Wire du DS18B20
-#define BROCHE_ONEWIRE 7 // Broche utilisée pour le bus 1-Wire
+#define DS18B20 0x28
+#define BROCHE_ONEWIRE 5
 
-OneWire ds(BROCHE_ONEWIRE); // Création de l'objet OneWire ds
+OneWire ds(BROCHE_ONEWIRE);
 
-// Fonction récupérant la température depuis le DS18B20
-// Retourne true si tout va bien, ou false en cas d'erreur
 boolean getTemperature(float *temp){
   byte data[9], addr[8];
   // data : Données lues depuis le scratchpad
@@ -29,14 +27,14 @@ boolean getTemperature(float *temp){
   ds.select(addr);        // On sélectionne le DS18B20
 
   ds.write(0x44, 1);      // On lance une prise de mesure de température
-  delay(800);             // Et on attend la fin de la mesure
+  delay(5000);             // Et on attend la fin de la mesure
 
   ds.reset();             // On reset le bus 1-Wire
   ds.select(addr);        // On sélectionne le DS18B20
   ds.write(0xBE);         // On envoie une demande de lecture du scratchpad
 
-  for (byte i = 0; i < 9; i++) // On lit le scratchpad
-    data[i] = ds.read();       // Et on stock les octets reçus
+  for (byte j = 0 ; j < 9 ; j++) // On lit le scratchpad
+    data[j] = ds.read();       // Et on stock les octets reçus
 
   // Calcul de la température en degré Celsius
   *temp = ((data[1] << 8) | data[0]) * 0.0625;
@@ -45,22 +43,29 @@ boolean getTemperature(float *temp){
   return true;
 }
 
-// setup()
 void setup() {
-  Serial.begin(9600); // Initialisation du port série
+  Serial.begin(9600);
 }
 
-// loop()
 void loop() {
-  float temp;
+  float temperatures[13], moyenne;
 
-  // Lit la température ambiante à ~1Hz
-  if(getTemperature(&temp)) {
-    // Affiche la température
-    Serial.print("Température : ");
-    Serial.print(temp);
-    Serial.write(176); // caractère °
-    Serial.write('C');
-    Serial.println();
+  for (int i(1) ; i <= 13 ; i++) {
+    float temp;
+
+    if(getTemperature(&temp)) {
+      temperatures[i] = temp;
+      Serial.print("Température ");
+      Serial.print(i);
+      Serial.print(" : ");
+      Serial.println(temp);
+    }
   }
+
+  for (int i(1) ; i <= 13 ; i++)
+    moyenne += temperatures[i];
+
+  moyenne /= 12;
+  Serial.print("Moyenne : ");
+  Serial.println(moyenne);
 }
