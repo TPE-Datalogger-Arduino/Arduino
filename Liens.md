@@ -17,3 +17,7 @@
 - [Bibliothèque](http://playground.arduino.cc/Main/DHTLib) Arduino pour les capteurs DHT
 - [*Datasheet*](https://boutique.semageek.com/fr/index.php?controller=attachment&id_attachment=19) du module de [Semageek](http://boutique.semageek.com/fr/138-dht11-capteur-de-temp%C3%A9rature-et-humidit%C3%A9-digital.html)
 - DHT22 sur [Lextronic](http://www.lextronic.fr/P19987-capteur-humidite--temperature-dht-22.html)
+
+## Capteur BMP180
+
+- [Wiki](http://www.seeedstudio.com/wiki/Grove_-_Barometer_Sensor_%28BMP180%29) de Seeed Studio
