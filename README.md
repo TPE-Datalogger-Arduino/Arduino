@@ -1,3 +1,9 @@
 # Partie Arduino du TPE
 
-Schémas, programmes et recherches concernant la partie électronique (Arduino) de notre TPE sur la réalisation d'un enregistreur de données météorologiques.
+Programmes pour faire fonctionner notre releveur de données météorologiques.
+
+Nous utilisons
+
+- un Arduino Uno,
+- un capteur BMP180,
+- un Ethernet Shield V2.0.
